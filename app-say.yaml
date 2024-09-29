@@ -1,4 +1,4 @@
 some:
-  word:hello from github
+  word: hello from github
 server:
-  port:9999
+  port: 9999

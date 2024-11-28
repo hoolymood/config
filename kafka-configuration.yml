@@ -1,0 +1,36 @@
+spring:
+  kafka:
+    bootstrap-servers: ${KAFKA_URL:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      acks: 1
+    consumer:
+      group-id:
+      auto-offset-reset: earliest
+      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      properties:
+        spring:
+          use:
+            type:
+              headers: false
+          json:
+            trusted:
+              packages: ''
+            value:
+              default:
+                type: ''
+        spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+        spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
+
+  kafka-topic:
+    email:
+    push:
+
+## custom option for dlt and retry. Add by @ConfigurationProperties
+kafka:
+  backOffDelay: 3000
+  backOffAttempts: 3
+  postfixNotSentDlt: .not-sent.DLT
+  postfixOtherDlt: .other.DLT

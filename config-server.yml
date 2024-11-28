@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri:
+          clone-on-start: true
+          search-paths: config
+          #  can do without below if you use SSH
+          username:
+          password:
